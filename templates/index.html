@@ -1,8 +1,11 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Server Health Monitor</title>
     <link rel="stylesheet" href="/static/index/syles.css">
-    <script src="/static/index/script.js"></script>
+    <script src="/static/index/script.js" defer></script>
 </head>
 <body>
     <noscript>
@@ -11,12 +14,12 @@
     <!-- Основной контент -->
     <div class="container">
         <h1>Server Health Monitor</h1>
-        <p id="cpu" class="status">Loading...</p>
-        <p id="disk" class="status">Loading...</p>
-        <p id="memory" class="status">Loading...</p>
-        <p id="processes" class="status">Loading...</p>
-        <p id="status" class="status">Loading...</p>
-        <p id="timestamp" class="status">Loading...</p>
+        <p id="cpu" class="status"><span class="label">CPU Usage:</span><span class="metric-value">Loading...</span></p>
+        <p id="disk" class="status"><span class="label">Disk Usage:</span><span class="metric-value">Loading...</span></p>
+        <p id="memory" class="status"><span class="label">Memory Usage:</span><span class="metric-value">Loading...</span></p>
+        <p id="processes" class="status"><span class="label">Total Processes:</span><span class="metric-value">Loading...</span></p>
+        <p id="status" class="status"><span class="label">Server Status:</span><span class="metric-value">Loading...</span></p>
+        <p id="timestamp" class="status">Last updated: Loading...</p>
     </div>
 </body>
 </html>

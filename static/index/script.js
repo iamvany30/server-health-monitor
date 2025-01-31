@@ -1,16 +1,42 @@
-function fetchData() {
-    fetch('/data')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('cpu').innerText = 'CPU Usage: ' + data.cpu_usage + '%';
-            document.getElementById('disk').innerText = 'Disk Usage: ' + data.disk_usage + '%';
-            document.getElementById('memory').innerText = 'Memory Usage: ' + data.memory_usage + '%';
-            document.getElementById('processes').innerText = 'Total Processes: ' + data.total_processes;
-            document.getElementById('status').innerText = 'Status: ' + data.status;
-            document.getElementById('timestamp').innerText = 'Updated: ' + new Date().toLocaleString();
-        });
-}
-setInterval(fetchData, 2000);
+document.addEventListener('DOMContentLoaded', () => {
+    const fetchData = async () => {
+        try {
+            const response = await fetch('/data');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            
+            // Update the elements with fetched data
+            updateStatus('cpu', data.cpu_usage);
+            updateStatus('disk', data.disk_usage);
+            updateStatus('memory', data.memory_usage);
+            updateStatus('processes', data.total_processes);
+            updateStatus('status', data.status);
+            updateTimestamp();
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            document.querySelectorAll('.status .metric-value').forEach(el => el.textContent = 'Error loading data');
+            document.getElementById('timestamp').textContent = 'Error loading timestamp';
+        }
+    };
 
-// Добавляем класс js-enabled к body при загрузке JavaScript
-document.body.classList.add('js-enabled');
+    const updateStatus = (id, value) => {
+        const element = document.querySelector(`#${id} .metric-value`);
+        if (element) {
+            element.textContent = value !== 'N/A' ? `${value}` : 'N/A';
+            element.classList.add('value-update'); // Trigger animation
+            setTimeout(() => element.classList.remove('value-update'), 500); // Remove animation class after animation
+        }
+    };
+
+    const updateTimestamp = () => {
+        const timestampElement = document.getElementById('timestamp');
+        const now = new Date().toLocaleString();
+        timestampElement.textContent = `Last updated: ${now}`;
+    };
+
+    // Fetch data initially and then every 10 seconds
+    fetchData();
+    setInterval(fetchData, 10000);
+});
