@@ -44,14 +44,6 @@ Ensure that static files (`styles.css`, `script.js`) are correctly placed in the
 
 ## Usage
 
-### Start the Application
-
-Run the Flask server to start serving the application.
-
-### Access the Application
-
-Open your web browser and navigate to the specified URL to access the Server Health Monitor dashboard.
-
 ### Desktop Application Mode
 
 For running the application as a desktop application using CEF, just run SHMonitor
