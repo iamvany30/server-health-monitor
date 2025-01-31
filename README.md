@@ -1,6 +1,5 @@
 # Server Health Monitor
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Python Version](https://img.shields.io/badge/python-3.6%2B-blue.svg)](https://www.python.org/downloads/)
 [![Flask](https://img.shields.io/badge/Flask-1.1.2-orange)](https://flask.palletsprojects.com/)
 [![CEF Python](https://img.shields.io/badge/CEF_Python-66.0-green)](https://github.com/cztomczak/cefpython)
